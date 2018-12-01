@@ -7,8 +7,10 @@
 
 // Print the first n term
 // of Golomb Sequence
-void Golomb::printGolomb(unsigned long n)
+void Golomb::printGolombSequence(unsigned long n)
 {
+	clock_t start = clock();
+
 	unsigned long *dp = new unsigned long[n + 1];
 
 	// base cases
@@ -24,4 +26,6 @@ void Golomb::printGolomb(unsigned long n)
 	}
 	cout << endl;
 	delete[] dp;
+
+	TimeCounter::printTimeSpent("Sequencia de Golomb", start, clock());
 }

@@ -7,15 +7,19 @@
 #define TRABALHO_APA_QUICKSORT_H
 
 #include <vector>
+#include <time.h>
+
+#include "TimeCounter.h"
 
 using namespace std;
 
-class QuickSort {
-public:
+class QuickSort
+{
+	public:
+	template<class T> static void sort(vector<T> &vect);
 
-    static void sort(vector<int> &vect);
-private:
-    static void quickSortRec(vector<int> &vect, int ini, int fim);
+	private:
+	template<class T> static void quickSortRec(vector<T> &vect, int ini, int fim);
 };
 
 

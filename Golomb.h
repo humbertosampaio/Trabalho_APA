@@ -7,13 +7,16 @@
 #define TRABALHOAPAHUMBERTO_GOLOMB_H
 
 #include <iostream>
+#include <time.h>
+
+#include "TimeCounter.h"
 
 using namespace std;
 
 class Golomb
 {
 	public:
-	static void printGolomb(unsigned long n);
+	static void printGolombSequence(unsigned long n);
 };
 
 

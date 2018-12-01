@@ -9,10 +9,16 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <time.h>
+
+#include "TimeCounter.h"
+#include "QuickSort.h"
+#include "QuickSort.cpp"
 
 using namespace std;
 
-typedef pair<int, int> iPair;
+typedef pair<int, int> IPair;
+typedef pair<int, IPair> Edge;
 
 class Graph
 {
@@ -23,7 +29,7 @@ class Graph
 
 	private:
 	int V, E;
-	vector< pair<int, iPair> > edges;
+	vector<Edge> edges;
 };
 
 class DisjointSets

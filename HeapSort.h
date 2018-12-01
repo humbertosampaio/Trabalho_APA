@@ -7,6 +7,9 @@
 #define TRABALHO_APA_HEAPSORT_H
 
 #include <vector>
+#include <time.h>
+
+#include "TimeCounter.h"
 
 using namespace std;
 

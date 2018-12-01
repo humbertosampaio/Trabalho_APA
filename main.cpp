@@ -7,6 +7,7 @@
 
 #include "Golomb.h"
 #include "QuickSort.h"
+#include "QuickSort.cpp"
 #include "HeapSort.h"
 #include "FileReader.h"
 #include "Kruskal.h"
@@ -37,8 +38,8 @@ int main(int argc, char** argv)
 
 void showRootMenu(string sortPath, string graphPath, bool showHeaderString)
 {
-	//if (showHeaderString)
-	//	showHeader();
+	if (showHeaderString)
+		showHeader();
 
 	showParadigmOptions();
 	int paradigm;
@@ -92,12 +93,13 @@ void showRootMenu(string sortPath, string graphPath, bool showHeaderString)
 
 void showHeader()
 {
-	cout << "*********************************************************************" << endl;
-	cout << "****************** ANALISE E PROJETO DE ALGORITMOS ******************" << endl;
-	cout << "*********************************************************************" << endl;
-	cout << "* Nome: Humberto de Oliveira Sampaio                                *" << endl;
-	cout << "* Matricula: 201635012                                              *" << endl;
-	cout << "*********************************************************************" << endl << endl;
+	cout << endl;
+	cout << "----------------------------------------------------------------------" << endl;
+	cout << "|| ---------------- ANALISE E PROJETO DE ALGORITMOS --------------- ||" << endl;
+	cout << "----------------------------------------------------------------------" << endl;
+	cout << "|| Nome: Humberto de Oliveira Sampaio                               ||" << endl;
+	cout << "|| Matricula: 201635012                                             ||" << endl;
+	cout << "|| ---------------------------------------------------------------- ||" << endl << endl;
 }
 
 void showParadigmOptions()
@@ -145,7 +147,7 @@ void execGolomb()
 	unsigned long int n;
 	cin >> n;
 	cout << "Sequencia de Golomb ate o " << n << "o digito:" << endl;
-	Golomb::printGolomb(n);
+	Golomb::printGolombSequence(n);
 }
 
 void execKruskal(string &instancePath)

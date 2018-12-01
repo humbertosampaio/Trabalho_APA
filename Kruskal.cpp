@@ -62,16 +62,20 @@ void DisjointSets::merge(int nodeA, int nodeB)
 
 int Graph::generateKruskalMST()
 {
-	int mstWeigth = 0; // Initialize result 
+	clock_t start = clock();
 
-	// Sort edges in increasing order on basis of cost 
-	sort(edges.begin(), edges.end());
+	// Initialize result 
+	int mstWeigth = 0;
+
+	// Sort edges in increasing order on basis of cost
+	QuickSort::sort(edges);
+	//sort(edges.begin(), edges.end());
 
 	// Create disjoint sets 
 	DisjointSets disjointSets(V);
 
 	// Iterate through all sorted edges 
-	vector< pair<int, iPair> >::iterator it;
+	vector<Edge>::iterator it;
 	for (it = edges.begin(); it != edges.end(); it++)
 	{
 		int nodeFrom = it->second.first;
@@ -85,8 +89,7 @@ int Graph::generateKruskalMST()
 		// and v belong to same set) 
 		if (setFrom != setTo)
 		{
-			// Current edge will be in the MST 
-			// so print it 
+			// Current edge will be in the MST, so print it 
 			cout << nodeFrom << " - " << nodeTo << endl;
 
 			// Update MST weight 
@@ -97,5 +100,8 @@ int Graph::generateKruskalMST()
 		}
 	}
 
+	TimeCounter::printTimeSpent("AGM por Kruskal", start, clock());
+
 	return mstWeigth;
 }
+

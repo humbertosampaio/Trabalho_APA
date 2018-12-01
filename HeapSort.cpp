@@ -8,6 +8,8 @@
 
 void HeapSort::sort(vector<int> &vet)
 {
+	clock_t start = clock();
+
 	int length = vet.size();
 	for (int i = (length / 2) - 1; i >= 0; i--)
 	{
@@ -21,6 +23,8 @@ void HeapSort::sort(vector<int> &vet)
 		vet[length - 1] = maior;
 		Heapify(vet, 0, --length);
 	}
+
+	TimeCounter::printTimeSpent("Heap Sort", start, clock());
 }
 
 void HeapSort::Heapify(vector<int> & v, int rootIndex, int length)
