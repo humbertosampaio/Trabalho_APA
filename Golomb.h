@@ -10,9 +10,10 @@
 
 using namespace std;
 
-class Golomb {
-public:
-    static void printGolomb(unsigned long n);
+class Golomb
+{
+	public:
+	static void printGolomb(unsigned long n);
 };
 
 

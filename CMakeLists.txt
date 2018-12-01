@@ -1,19 +1,12 @@
-cmake_minimum_required(VERSION 3.10)
-project(Trabalho_APA)
+﻿cmake_minimum_required (VERSION 3.8)
 
-set(CMAKE_CXX_STANDARD 11)
+project ("Trabalho_APA")
 
-include_directories(.)
+# Include sub-projects.
+#add_subdirectory ("Trabalho_APA")
 
-add_executable(Trabalho_APA
-        FileReader.cpp
-        FileReader.h
-        Golomb.cpp
-        Golomb.h
-        Grafo.cpp
-        Grafo.h
-        HeapSort.cpp
-        HeapSort.h
-        main.cpp
-        QuickSort.cpp
-        QuickSort.h)
+#set (my_includes Golomb.h")
+#set (my_cpps "Golomb.cpp" "main.cpp")
+file(GLOB includes "*.h")
+file(GLOB cpps "*.cpp")
+add_executable (main ${includes} ${cpps})

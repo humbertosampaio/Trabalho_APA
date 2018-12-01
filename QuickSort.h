@@ -3,8 +3,8 @@
  * Matrícula: 201635012
  */
 
-#ifndef TRABALHOAPAHUMBERTO_QUICKSORT_H
-#define TRABALHOAPAHUMBERTO_QUICKSORT_H
+#ifndef TRABALHO_APA_QUICKSORT_H
+#define TRABALHO_APA_QUICKSORT_H
 
 #include <vector>
 
@@ -19,4 +19,4 @@ private:
 };
 
 
-#endif //TRABALHOAPAHUMBERTO_QUICKSORT_H
+#endif

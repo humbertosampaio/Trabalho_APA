@@ -5,19 +5,76 @@
 
 #include "FileReader.h"
 
-vector<int> FileReader::readInstance(vector<int> &vet, string path)
+unsigned long int FileReader::readSortInstance(vector<int> &vet, string path)
 {
-    ifstream reader;
-    reader.open(path);
+	ifstream file(path);
 
-    int n;
-    if (reader.is_open())
-    {
-        reader >> n;
-        reader >> n;
-        while (reader >> n)
-        {
-            vet.push_back(n);
-        }
-    }
+	int n;
+	if (file.is_open())
+	{
+		file >> n;
+		file >> n;
+		while (file >> n)
+			vet.push_back(n);
+	}
+	else
+		printErrorMessage();
+
+	file.close();
+	return vet.size();
+}
+
+unsigned long int FileReader::readSortInstanceSize(string path)
+{
+	ifstream file(path);
+
+	unsigned long int n = 0;
+	if (file.is_open())
+	{
+		file >> n;
+		file >> n;
+	}
+	else
+		printErrorMessage();
+
+	file.close();
+	return n;
+}
+
+unsigned long int FileReader::readMSTInstance(Graph& graph, string path)
+{
+	ifstream file(path);
+
+	unsigned long int V;
+	int nodeA, nodeB;
+	if (file.is_open())
+	{
+		file >> V;
+		while (file >> nodeA >> nodeB)
+			graph.addEdge(nodeA, nodeB, 0);
+	}
+	else
+		printErrorMessage();
+
+	file.close();
+	return V;
+}
+
+unsigned long int FileReader::readMSTInstanceSize(string path)
+{
+	ifstream file(path);
+
+	unsigned long int n = 0;
+	if (file.is_open())
+		file >> n;
+	else
+		printErrorMessage();
+
+	file.close();
+	return n;
+}
+
+void FileReader::printErrorMessage()
+{
+	cout << "Erro ao abrir o arquivo. Talvez voce tenha inserido o caminho errado. Por favor, tente novamente." << endl;
 }
