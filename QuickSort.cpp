@@ -17,20 +17,20 @@ template<class T> void QuickSort::sort(vector<T> &vect, bool showTimeSpent)
 		FileHandler::printTimeSpent(vect.size(), start, clock());
 }
 
-template<class T> void QuickSort::quickSortRec(vector<T> &vect, int ini, int fim)
+template<class T> void QuickSort::quickSortRec(vector<T> &vect, int start, int end)
 {
 	int i, j;
-	i = ini;
-	j = fim - 1;
-	T pivot = vect[(ini + fim) / 2];
+	i = start;
+	j = end - 1;
+	T pivot = vect[(start + end) / 2];
 
 	// Particionamento
 	while (i <= j)
 	{
-		while (vect[i] < pivot && i < fim)
+		while (vect[i] < pivot && i < end)
 			i++;
 
-		while (vect[j] > pivot && j > ini)
+		while (vect[j] > pivot && j > start)
 			j--;
 
 		if (i <= j)
@@ -44,10 +44,10 @@ template<class T> void QuickSort::quickSortRec(vector<T> &vect, int ini, int fim
 	}
 
 	///Chamadas recursivas
-	if (j > ini)
-		quickSortRec(vect, ini, j + 1);
-	if (i < fim)
-		quickSortRec(vect, i, fim);
+	if (j > start)
+		quickSortRec(vect, start, j + 1);
+	if (i < end)
+		quickSortRec(vect, i, end);
 }
 
 #endif

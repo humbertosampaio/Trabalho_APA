@@ -228,13 +228,12 @@ void execGolomb(string &instancePath)
 		{
 			cout << "Iteracao " << j << ":\n";
 			Golomb::golombSequence(outputVec, *it);
+			outputVec.clear();
 			cout << '\n';
 		}
 
 		getStreamForVector(outputVec, ss);
 		FileHandler::writeToOutputFile(fullOutputPath, ss);
-
-		outputVec.clear();
 	}
 
 	inputVec.clear();

@@ -95,7 +95,7 @@ int Graph::generateKruskalMST()
 	DisjointSet disjointSet(V);
 	unsigned long int edgesInSolution = 0;
 	vector<Edge>::iterator it = this->edges.begin();
-	while ((it != this->edges.end() && edgesInSolution < V - 1))
+	while ((it != this->edges.end()) && (edgesInSolution < V - 1))
 	{
 		NodePair nodePair = it->second;
 		int nodeA = nodePair.first;
