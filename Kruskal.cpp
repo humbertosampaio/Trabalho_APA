@@ -10,7 +10,6 @@ Graph::Graph(int V)
 {
 	this->V = V;
 	this->maxId = 1;
-
 }
 
 void Graph::addNode(unsigned long int id, int x, int y)
@@ -85,6 +84,8 @@ void Graph::addAllEdges()
 
 int Graph::generateKruskalMST()
 {
+	this->mstEdges.clear();
+
 	clock_t start = clock();
 	int mstWeigth = 0;
 

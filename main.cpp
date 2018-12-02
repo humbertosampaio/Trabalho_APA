@@ -122,7 +122,8 @@ void execHeapSort(string &instancePath)
 	cout << endl << "|| ---------------------------- Heap Sort ------------------------- ||";
 	cout << endl << "----------------------------------------------------------------------" << endl << endl;
 
-	vector<unsigned long int> vec;
+	vector<unsigned long int> inputVec;
+	vector<unsigned long int> vecToSort(inputVec);
 	stringstream ss;
 	ss << "----------------------------\nHeap Sort:\n\n";
 	string fullOutputPath = instancePath + "\\" + RESULT_FILE_NAME;
@@ -140,19 +141,20 @@ void execHeapSort(string &instancePath)
 		ss << "### Instancia " << fileName << " (" << size << " registros): ###\n";
 		cout << ss.str();
 		FileHandler::writeToOutputFile(fullOutputPath, ss);
-		FileHandler::readSortInstance(vec, fullPath);
+		FileHandler::readSortInstance(inputVec, fullPath);
 
 		for (int j = 1; j <= 30; j++)
 		{
 			cout << "Iteracao " << j << ":\n";
-			HeapSort::sort(vec);
+			vecToSort = inputVec;
+			HeapSort::sort(vecToSort);
 			cout << '\n';
 		}
 
-		getStreamForVector(vec, ss);
+		getStreamForVector(inputVec, ss);
 		FileHandler::writeToOutputFile(fullOutputPath, ss);
 
-		vec.clear();
+		inputVec.clear();
 	}
 }
 
@@ -162,7 +164,8 @@ void execQuickSort(string &instancePath)
 	cout << endl << "|| --------------------------- Quick Sort ------------------------- ||";
 	cout << endl << "----------------------------------------------------------------------" << endl << endl;
 
-	vector<unsigned long int> vec;
+	vector<unsigned long int> inputVec;
+	vector<unsigned long int> vecToSort;
 	stringstream ss;
 	ss << "----------------------------\nQUICK SORT:\n\n";
 	string fullOutputPath = instancePath + "\\" + RESULT_FILE_NAME;
@@ -180,19 +183,20 @@ void execQuickSort(string &instancePath)
 		ss << "### Instancia " << fileName << " (" << size << " registros): ###\n";
 		cout << ss.str();
 		FileHandler::writeToOutputFile(fullOutputPath, ss);
-		FileHandler::readSortInstance(vec, fullPath);
+		FileHandler::readSortInstance(inputVec, fullPath);
 
 		for (int j = 1; j <= 30; j++)
 		{
 			cout << "Iteracao " << j << ":\n";
-			QuickSort::sort(vec, true);
+			vecToSort = inputVec;
+			QuickSort::sort(vecToSort, true);
 			cout << '\n';
 		}
 
-		getStreamForVector(vec, ss);
+		getStreamForVector(inputVec, ss);
 		FileHandler::writeToOutputFile(fullOutputPath, ss);
 
-		vec.clear();
+		inputVec.clear();
 	}
 }
 
@@ -212,8 +216,8 @@ void execGolomb(string &instancePath)
 	ss << "----------------------------\nSEQUENCIA DE GOLOMB:\n\n";
 	string fullOutputPath = instancePath + "\\" + RESULT_FILE_NAME;
 	FileHandler::writeToOutputFile(fullOutputPath, ss);
-	vector<unsigned long int> outputVec;
 
+	vector<unsigned long int> outputVec;
 	for (auto it = inputVec.begin(); it != inputVec.end(); it++)
 	{
 		ss << "### Sequencia com " << *it << " numeros: ###\n";
