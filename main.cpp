@@ -42,6 +42,12 @@ int main(int argc, char** argv)
 		cout << "- Por ter uma entrada mais simples, o algoritmo da Sequencia de Golomb possui apenas um arquivo de entrada,";
 		cout << " que deve possuir o nome " << GOLOMB_FILE_NAME << "\"" << endl;
 		cout << "- Os [id_instancia] devem estar entre 0 e 100" << endl;
+		
+		int c;
+		cout << endl << "Pressione <Enter> para fechar...";
+		while (c != EOF && (c = getchar()) != '\n');
+		clearerr(stdin);
+
 		return 0;
 	}
 
@@ -259,8 +265,8 @@ void execKruskal(string &instancePath)
 		
 		for (int j = 1; j <= 30; j++)
 		{
-			cout << "Iteracao " << j << ":";
-			cout << "Gerando AGM...\n";
+			cout << "Iteracao " << j << ":\n";
+			cout << "Gerando AGM...";
 			g.generateKruskalMST();
 		}
 

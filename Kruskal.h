@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <iostream>
 #include <time.h>
+#include <math.h>
 
 #include "FileHandler.h"
 #include "QuickSort.h"
