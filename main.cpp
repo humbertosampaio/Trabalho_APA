@@ -131,11 +131,18 @@ void execHeapSort(string &instancePath)
 		if (size == 0)
 			continue;
 
-		cout << "Instancia " << fileName << ":";
+		ss << "### Instancia " << fileName << " (" << size << " registros): ###\n";
+		cout << ss.str();
+		FileHandler::writeToOutputFile(fullOutputPath, ss);
 		FileHandler::readSortInstance(vec, fullPath);
-		HeapSort::sort(vec);
 
-		ss << "Intancia " + fileName + ":\n";
+		for (int j = 1; j <= 30; j++)
+		{
+			cout << "Iteracao " << j << ":\n";
+			HeapSort::sort(vec);
+			cout << '\n';
+		}
+
 		getStreamForVector(vec, ss);
 		FileHandler::writeToOutputFile(fullOutputPath, ss);
 
@@ -151,7 +158,7 @@ void execQuickSort(string &instancePath)
 
 	vector<unsigned long int> vec;
 	stringstream ss;
-	ss << "----------------------------\nQuick Sort:\n\n";
+	ss << "----------------------------\nQUICK SORT:\n\n";
 	string fullOutputPath = instancePath + "\\" + RESULT_FILE_NAME;
 	FileHandler::writeToOutputFile(fullOutputPath, ss);
 
@@ -164,11 +171,18 @@ void execQuickSort(string &instancePath)
 		if (size == 0)
 			continue;
 
-		cout << "Instancia " << fileName << ":";
+		ss << "### Instancia " << fileName << " (" << size << " registros): ###\n";
+		cout << ss.str();
+		FileHandler::writeToOutputFile(fullOutputPath, ss);
 		FileHandler::readSortInstance(vec, fullPath);
-		//QuickSort::sort(vec, true);
 
-		ss << "Intancia " + fileName + ":\n";
+		for (int j = 1; j <= 30; j++)
+		{
+			cout << "Iteracao " << j << ":\n";
+			QuickSort::sort(vec, true);
+			cout << '\n';
+		}
+
 		getStreamForVector(vec, ss);
 		FileHandler::writeToOutputFile(fullOutputPath, ss);
 
@@ -189,23 +203,31 @@ void execGolomb(string &instancePath)
 		return;
 
 	stringstream ss;
-	ss << "----------------------------\nSequencia de Golomb:\n\n";
+	ss << "----------------------------\nSEQUENCIA DE GOLOMB:\n\n";
 	string fullOutputPath = instancePath + "\\" + RESULT_FILE_NAME;
 	FileHandler::writeToOutputFile(fullOutputPath, ss);
 	vector<unsigned long int> outputVec;
 
 	for (auto it = inputVec.begin(); it != inputVec.end(); it++)
 	{
-		cout << "Sequencia com " << *it << " numeros:";
-		Golomb::golombSequence(outputVec, *it);
+		ss << "### Sequencia com " << *it << " numeros: ###\n";
+		cout << ss.str();
+		FileHandler::writeToOutputFile(fullOutputPath, ss);
 
-		ss << "Sequencia com " << *it << " numeros:\n";
+		for (int j = 1; j <= 30; j++)
+		{
+			cout << "Iteracao " << j << ":\n";
+			Golomb::golombSequence(outputVec, *it);
+			cout << '\n';
+		}
+
 		getStreamForVector(outputVec, ss);
 		FileHandler::writeToOutputFile(fullOutputPath, ss);
+
+		outputVec.clear();
 	}
 
 	inputVec.clear();
-	outputVec.clear();
 }
 
 void execKruskal(string &instancePath)
@@ -215,7 +237,7 @@ void execKruskal(string &instancePath)
 	cout << endl << "----------------------------------------------------------------------" << endl << endl;
 
 	stringstream ss;
-	ss << "----------------------------\AGM por Kruskal:\n\n";
+	ss << "----------------------------\nAGM POR KRUSKAL:\n\n";
 	string fullOutputPath = instancePath + "\\" + RESULT_FILE_NAME;
 	FileHandler::writeToOutputFile(fullOutputPath, ss);
 
@@ -223,17 +245,25 @@ void execKruskal(string &instancePath)
 	{
 		string fileName = MST_PREFIX + to_string(id) + INSTANCES_EXTENSION;
 		string fullInputPath = instancePath + "\\" + fileName;
-		unsigned long int size = FileHandler::readMSTInstanceSize(fullInputPath);
+		unsigned long int size = Graph::readMSTInstanceSize(fullInputPath);
 
 		if (size == 0)
 			continue;
 
 		Graph g = Graph(size);
-		cout << "Instancia " << fileName << ":";
+		ss << "### Instancia " << fileName << " (" << size << " registros): ###\n";
+		cout << ss.str();
+		FileHandler::writeToOutputFile(fullOutputPath, ss);
+		cout << "Lendo grafo...\n\n";
 		Graph::readMSTInstance(g, fullInputPath);
-		g.generateKruskalMST(false);
+		
+		for (int j = 1; j <= 30; j++)
+		{
+			cout << "Iteracao " << j << ":";
+			cout << "Gerando AGM...\n";
+			g.generateKruskalMST();
+		}
 
-		ss << "Intancia " + fileName + ":\n";
 		getStreamForEdges(g.mstEdges, ss);
 		FileHandler::writeToOutputFile(fullOutputPath, ss);
 	}
@@ -250,7 +280,7 @@ void getStreamForVector(vector<unsigned long int> vec, stringstream& output)
 void getStreamForEdges(vector<Edge> vec, stringstream& output)
 {
 	for (auto it = vec.begin(); it != vec.end(); ++it)
-		output << (*it).second.first << " - " << (*it).second.second << " (W:" + (*it).first << ")\n";
+		output << (*it).second.first << " - " << (*it).second.second << " (W:" << (*it).first << ")\n";
 
 	output << "\n\n";
 }

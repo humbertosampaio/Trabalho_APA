@@ -18,25 +18,40 @@
 using namespace std;
 
 typedef pair<int, int> NodePair;
+typedef pair<int, NodePair> Edge; // <PesoAresta, Nos>
 
-// <PesoAresta, No>
-typedef pair<int, NodePair> Edge;
+class Node
+{
+	public:
+	Node(unsigned long int id, int x, int y);
+	unsigned long int getId();
+	int getX();
+	int getY();
+
+	private:
+	unsigned long int id;
+	int x, y;
+};
 
 class Graph
 {
 	public:
 	Graph(int V);
 
-	// Retorna a quantidade de nos no grafo
+	// Retorna a quantidade de nos na instancia
 	static unsigned long int readMSTInstanceSize(string path);
 	static unsigned long int readMSTInstance(Graph& graph, string path);
+
+	void addNode(unsigned long int id, int x, int y);
 	void addEdge(int from, int to, int weigth);
-	int generateKruskalMST(bool outputResult);
+	void addAllEdges();
+	int generateKruskalMST();
 	vector<Edge> mstEdges;		// Vetor de arestas do resultado
 
 	private:
-	int V;						// Quantidade de nos
+	int V, maxId;				// Quantidade de nos, maior id de um no
 	vector<Edge> edges;			// Vetor de arestas
+	vector<Node> nodes;			// Vetor de nos
 };
 
 // Representa as sub-arvores utilizadas no processo
@@ -45,8 +60,8 @@ class DisjointSet
 {
 	public:
 	DisjointSet(int size);
-	int findSetRoot(int node);
-	void merge(int nodeA, int nodeB);
+	int findSetRoot(int node);			// Encontra a raiz de um conjunto usando Path Compression
+	void merge(int nodeA, int nodeB);	// Une dois conjuntos disjuntos
 
 	private:
 	int* parent;

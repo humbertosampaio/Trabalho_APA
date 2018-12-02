@@ -5,10 +5,19 @@
 
 #include "Kruskal.h"
 
-
+// Graph
 Graph::Graph(int V)
 {
 	this->V = V;
+	this->maxId = 1;
+
+}
+
+void Graph::addNode(unsigned long int id, int x, int y)
+{
+	this->nodes.emplace_back(id, x, y);
+	if (this->maxId < id)
+		this->maxId = id;
 }
 
 unsigned long int Graph::readMSTInstanceSize(string path)
@@ -30,15 +39,16 @@ unsigned long int Graph::readMSTInstance(Graph& graph, string path)
 	srand(time(NULL));
 	ifstream file(path);
 	unsigned long int V = 0, cont = 0;
-	int nodeA, nodeB, weigth;
+	int x, y, weigth;
 	if (file.is_open())
 	{
 		file >> V;
-		while (file >> nodeA >> nodeB >> weigth)
+		while (file >> x >> y)
 		{
-			graph.addEdge(nodeA, nodeB, weigth);
+			graph.addNode(++cont, x, y);
 		}
 		file.close();
+		graph.addAllEdges();
 	}
 
 	return V;
@@ -49,7 +59,31 @@ void Graph::addEdge(int from, int to, int weigth)
 	edges.push_back({ weigth, {from, to} });
 }
 
-int Graph::generateKruskalMST(bool outputResult)
+void Graph::addAllEdges()
+{
+	auto itA = this->nodes.begin();
+	while (itA != this->nodes.end())
+	{
+		auto itB = this->nodes.begin();
+		itB++;
+		while (itB != this->nodes.end())
+		{
+			unsigned long int idA = (*itA).getId(), idB = (*itB).getId();
+			if (idA < idB)
+			{
+				long int x = (*itA).getX() - (*itB).getX();
+				long int y = (*itA).getY() - (*itB).getY();
+				float distance = sqrt(pow(x, 2) + pow(y, 2));
+				addEdge(idA, idB, distance);
+			}
+			itB++;
+		}
+
+		itA++;
+	}
+}
+
+int Graph::generateKruskalMST()
 {
 	clock_t start = clock();
 	int mstWeigth = 0;
@@ -91,6 +125,31 @@ int Graph::generateKruskalMST(bool outputResult)
 }
 
 
+// Node
+Node::Node(unsigned long int id, int x, int y)
+{
+	this->id = id;
+	this->x = x;
+	this->y = y;
+}
+
+unsigned long int Node::getId()
+{
+	return this->id;
+}
+
+int Node::getX()
+{
+	return this->x;
+}
+
+int Node::getY()
+{
+	return this->y;
+}
+
+
+// DisjointSet
 DisjointSet::DisjointSet(int size)
 {
 	this->size = size;
@@ -105,7 +164,6 @@ DisjointSet::DisjointSet(int size)
 	}
 }
 
-// Encontra o pai de um nó usando Path Compression
 int DisjointSet::findSetRoot(int node)
 {
 	// Define o pai dos nos no caminho ate a raiz
@@ -116,7 +174,6 @@ int DisjointSet::findSetRoot(int node)
 	return this->parent[node];
 }
 
-// Une dois conjuntos disjuntos
 void DisjointSet::merge(int nodeA, int nodeB)
 {
 	nodeA = findSetRoot(nodeA), nodeB = findSetRoot(nodeB);
