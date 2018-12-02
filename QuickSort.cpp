@@ -3,10 +3,10 @@
  * Matrícula: 201635012
  */
 
-#include "QuickSort.h"
-
 #ifndef TRABALHO_APA_QUICKSORT_CPP
 #define TRABALHO_APA_QUICKSORT_CPP
+
+#include "QuickSort.h"
 
 template<class T> void QuickSort::sort(vector<T> &vect, bool showTimeSpent)
 {
@@ -14,7 +14,7 @@ template<class T> void QuickSort::sort(vector<T> &vect, bool showTimeSpent)
 	quickSortRec(vect, 0, vect.size());
 
 	if (showTimeSpent)
-		TimeCounter::printTimeSpent(vect.size(), start, clock());
+		FileHandler::printTimeSpent(vect.size(), start, clock());
 }
 
 template<class T> void QuickSort::quickSortRec(vector<T> &vect, int ini, int fim)

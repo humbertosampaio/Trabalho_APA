@@ -21,5 +21,5 @@ void Golomb::golombSequence(vector<unsigned long int>& vec, unsigned long maxInd
 		//cout << vec[i] << " ";
 	}
 
-	TimeCounter::printTimeSpent(maxIndex, start, clock());
+	FileHandler::printTimeSpent(maxIndex, start, clock());
 }

@@ -24,7 +24,7 @@ void HeapSort::sort(vector<unsigned long int> &vec)
 		Heapify(vec, 0, --length);
 	}
 
-	TimeCounter::printTimeSpent(vec.size(), start, clock());
+	FileHandler::printTimeSpent(vec.size(), start, clock());
 }
 
 void HeapSort::Heapify(vector<unsigned long int> & v, int rootIndex, int length)

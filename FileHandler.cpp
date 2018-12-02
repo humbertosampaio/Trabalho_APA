@@ -37,25 +37,6 @@ unsigned long int FileHandler::readSortInstanceSize(string path)
 	return n;
 }
 
-unsigned long int FileHandler::readMSTInstance(Graph& graph, string path)
-{
-	srand(time(NULL));
-	ifstream file(path);
-	unsigned long int V = 0, cont = 0;
-	int nodeA, nodeB, weigth;
-	if (file.is_open())
-	{
-		file >> V;
-		while (file >> nodeA >> nodeB >> weigth)
-		{
-			graph.addEdge(nodeA, nodeB, weigth);
-		}
-		file.close();
-	}
-
-	return V;
-}
-
 unsigned long int FileHandler::readMSTInstanceSize(string path)
 {
 	ifstream file(path);
@@ -112,6 +93,13 @@ void FileHandler::writeToOutputFile(const string& outputFileName, stringstream& 
 		cout << "Falha ao abrir o arquivo \"" << outputFileName << "\" para escrita." << endl;
 }
 
+void FileHandler::printTimeSpent(unsigned long int size, clock_t start, clock_t end)
+{
+	stringstream ss;
+	ss << endl << "Tamanho da instancia: " << size;
+	ss << endl << "Tempo gasto na execucao: " << (double)(end - start) / CLOCKS_PER_SEC << "s" << endl << endl;
+	cout << ss.str();
+}
 void FileHandler::printErrorMessage(string fileName)
 {
 	cout << "Arquivo " << fileName << " nao encontrado." << endl;

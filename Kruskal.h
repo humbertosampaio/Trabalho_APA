@@ -11,7 +11,7 @@
 #include <iostream>
 #include <time.h>
 
-#include "TimeCounter.h"
+#include "FileHandler.h"
 #include "QuickSort.h"
 #include "QuickSort.cpp"
 
@@ -26,6 +26,7 @@ class Graph
 {
 	public:
 	Graph(int V);
+	static unsigned long int readMSTInstance(Graph& graph, string path);
 	void addEdge(int from, int to, int weigth);
 	int generateKruskalMST(bool outputResult);
 	vector<Edge> mstEdges;		// Vetor de arestas do resultado

@@ -230,7 +230,7 @@ void execKruskal(string &instancePath)
 
 		Graph g = Graph(size);
 		cout << "Instancia " << fileName << ":";
-		FileHandler::readMSTInstance(g, fullInputPath);
+		Graph::readMSTInstance(g, fullInputPath);
 		g.generateKruskalMST(false);
 
 		ss << "Intancia " + fileName + ":\n";

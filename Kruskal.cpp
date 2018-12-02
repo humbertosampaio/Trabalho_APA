@@ -10,6 +10,24 @@ Graph::Graph(int V)
 	this->V = V;
 }
 
+unsigned long int Graph::readMSTInstance(Graph& graph, string path)
+{
+	srand(time(NULL));
+	ifstream file(path);
+	unsigned long int V = 0, cont = 0;
+	int nodeA, nodeB, weigth;
+	if (file.is_open())
+	{
+		file >> V;
+		while (file >> nodeA >> nodeB >> weigth)
+		{
+			graph.addEdge(nodeA, nodeB, weigth);
+		}
+		file.close();
+	}
+
+	return V;
+}
 void Graph::addEdge(int from, int to, int weigth)
 {
 	edges.push_back({ weigth, {from, to} });
@@ -51,7 +69,7 @@ int Graph::generateKruskalMST(bool outputResult)
 		++it;
 	}
 
-	TimeCounter::printTimeSpent(V, start, clock());
+	FileHandler::printTimeSpent(V, start, clock());
 
 	return mstWeigth;
 }
