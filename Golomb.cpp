@@ -5,27 +5,21 @@
 
 #include "Golomb.h"
 
-// Print the first n term
-// of Golomb Sequence
-void Golomb::printGolombSequence(unsigned long n)
+void Golomb::golombSequence(vector<unsigned long int>& vec, unsigned long maxIndex)
 {
 	clock_t start = clock();
 
-	unsigned long *dp = new unsigned long[n + 1];
+	if (vec.size() < maxIndex + 1)
+		vec.resize(maxIndex + 1);
 
-	// base cases
-	dp[1] = 1;
-	cout << dp[1] << " ";
+	vec[1] = 1;
+	//cout << vec[1] << " ";
 
-	// Finding and printing first
-	// n terms of Golomb Sequence.
-	for (unsigned long i = 2; i <= n; i++)
+	for (unsigned long i = 2; i <= maxIndex; i++)
 	{
-		dp[i] = 1 + dp[i - dp[dp[i - 1]]];
-		cout << dp[i] << " ";
+		vec[i] = 1 + vec[i - vec[vec[i - 1]]];
+		//cout << vec[i] << " ";
 	}
-	cout << endl;
-	delete[] dp;
 
-	TimeCounter::printTimeSpent("Sequencia de Golomb", start, clock());
+	TimeCounter::printTimeSpent(maxIndex, start, clock());
 }

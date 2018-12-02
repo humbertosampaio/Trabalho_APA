@@ -8,11 +8,13 @@
 #ifndef TRABALHO_APA_QUICKSORT_CPP
 #define TRABALHO_APA_QUICKSORT_CPP
 
-template<class T> void QuickSort::sort(vector<T> &vect)
+template<class T> void QuickSort::sort(vector<T> &vect, bool showTimeSpent)
 {
 	clock_t start = clock();
 	quickSortRec(vect, 0, vect.size());
-	TimeCounter::printTimeSpent("Quick Sort", start, clock());
+
+	if (showTimeSpent)
+		TimeCounter::printTimeSpent(vect.size(), start, clock());
 }
 
 template<class T> void QuickSort::quickSortRec(vector<T> &vect, int ini, int fim)

@@ -16,10 +16,10 @@ using namespace std;
 class HeapSort
 {
 	public:
-	static void sort(vector<int> &vet);
+	static void sort(vector<unsigned long int> &vec);
 
 	private:
-	static void Heapify(vector<int> &vet, int rootIndex, int length);
+	static void Heapify(vector<unsigned long int> &vec, int rootIndex, int length);
 };
 
 

@@ -17,31 +17,37 @@
 
 using namespace std;
 
-typedef pair<int, int> IPair;
-typedef pair<int, IPair> Edge;
+typedef pair<int, int> NodePair;
+
+// <PesoAresta, No>
+typedef pair<int, NodePair> Edge;
 
 class Graph
 {
 	public:
 	Graph(int V);
-	void addEdge(int nodeFrom, int nodeTo, int weigth);
-	int generateKruskalMST();
+	void addEdge(int from, int to, int weigth);
+	int generateKruskalMST(bool outputResult);
+	vector<Edge> mstEdges;		// Vetor de arestas do resultado
 
 	private:
-	int V, E;
-	vector<Edge> edges;
+	int V;						// Quantidade de nos
+	vector<Edge> edges;			// Vetor de arestas
 };
 
-class DisjointSets
+// Representa as sub-arvores utilizadas no processo
+// de criacao da AGM
+class DisjointSet
 {
 	public:
-	DisjointSets(int n);
-	int find(int node);
+	DisjointSet(int size);
+	int findSetRoot(int node);
 	void merge(int nodeA, int nodeB);
 
 	private:
-	int* parent, *rank;
-	int n;
+	int* parent;
+	int* rank;
+	int size;
 };
 
 #endif

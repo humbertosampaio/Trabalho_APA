@@ -16,7 +16,7 @@ using namespace std;
 class QuickSort
 {
 	public:
-	template<class T> static void sort(vector<T> &vect);
+	template<class T> static void sort(vector<T> &vect, bool showTimeSpent);
 
 	private:
 	template<class T> static void quickSortRec(vector<T> &vect, int ini, int fim);

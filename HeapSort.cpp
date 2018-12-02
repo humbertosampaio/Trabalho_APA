@@ -6,28 +6,28 @@
 #include "HeapSort.h"
 
 
-void HeapSort::sort(vector<int> &vet)
+void HeapSort::sort(vector<unsigned long int> &vec)
 {
 	clock_t start = clock();
 
-	int length = vet.size();
+	int length = vec.size();
 	for (int i = (length / 2) - 1; i >= 0; i--)
 	{
-		Heapify(vet, i, length);
+		Heapify(vec, i, length);
 	}
 
 	while (length > 0)
 	{
-		int maior = vet[0];
-		vet[0] = vet[length - 1];
-		vet[length - 1] = maior;
-		Heapify(vet, 0, --length);
+		int maior = vec[0];
+		vec[0] = vec[length - 1];
+		vec[length - 1] = maior;
+		Heapify(vec, 0, --length);
 	}
 
-	TimeCounter::printTimeSpent("Heap Sort", start, clock());
+	TimeCounter::printTimeSpent(vec.size(), start, clock());
 }
 
-void HeapSort::Heapify(vector<int> & v, int rootIndex, int length)
+void HeapSort::Heapify(vector<unsigned long int> & v, int rootIndex, int length)
 {
 	int childIndex;
 	int rootValue = v[rootIndex];
