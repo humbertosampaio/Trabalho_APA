@@ -26,6 +26,9 @@ class Graph
 {
 	public:
 	Graph(int V);
+
+	// Retorna a quantidade de nos no grafo
+	static unsigned long int readMSTInstanceSize(string path);
 	static unsigned long int readMSTInstance(Graph& graph, string path);
 	void addEdge(int from, int to, int weigth);
 	int generateKruskalMST(bool outputResult);

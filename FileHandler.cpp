@@ -37,20 +37,6 @@ unsigned long int FileHandler::readSortInstanceSize(string path)
 	return n;
 }
 
-unsigned long int FileHandler::readMSTInstanceSize(string path)
-{
-	ifstream file(path);
-
-	unsigned long int n = 0;
-	if (file.is_open())
-	{
-		file >> n;
-		file.close();
-	}
-
-	return n;
-}
-
 vector<unsigned long int> FileHandler::readGolombInstance(string path)
 {
 	vector<unsigned long int> vec;

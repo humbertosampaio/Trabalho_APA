@@ -22,9 +22,6 @@ class FileHandler
 	static unsigned long int readSortInstance(vector<unsigned long int> &vec, string path);
 	static unsigned long int readSortInstanceSize(string path);
 
-	// Retorna a quantidade de nos no grafo
-	static unsigned long int readMSTInstanceSize(string path);
-
 	static vector<unsigned long int> readGolombInstance(string path);
 
 	static void writeToOutputFile(const string &outputFileName, const string &text);

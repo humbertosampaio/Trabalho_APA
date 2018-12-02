@@ -5,9 +5,24 @@
 
 #include "Kruskal.h"
 
+
 Graph::Graph(int V)
 {
 	this->V = V;
+}
+
+unsigned long int Graph::readMSTInstanceSize(string path)
+{
+	ifstream file(path);
+
+	unsigned long int n = 0;
+	if (file.is_open())
+	{
+		file >> n;
+		file.close();
+	}
+
+	return n;
 }
 
 unsigned long int Graph::readMSTInstance(Graph& graph, string path)
@@ -28,6 +43,7 @@ unsigned long int Graph::readMSTInstance(Graph& graph, string path)
 
 	return V;
 }
+
 void Graph::addEdge(int from, int to, int weigth)
 {
 	edges.push_back({ weigth, {from, to} });
