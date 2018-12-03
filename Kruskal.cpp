@@ -110,10 +110,8 @@ int Graph::generateKruskalMST()
 			// Adiciona o peso da aresta entre esses nos no peso da AGM
 			mstWeigth += it->first;
 
-			// Aresta estara na solucao
-			this->mstEdges.push_back(*it);
-
 			// Inclui aresta na solucao
+			this->mstEdges.push_back(*it);
 			disjointSet.merge(rootFromSetA, rootFromSetB);
 		}
 
@@ -179,11 +177,11 @@ void DisjointSet::merge(int nodeA, int nodeB)
 {
 	nodeA = findSetRoot(nodeA), nodeB = findSetRoot(nodeB);
 
-	// Define a raiz com menor ranque, a raiz de uma
-	// sub-arvore da raiz com maior ranque
+	// Compara as duas raízes e define a de menor ranque
+	// como sendo filha da de maior ranque
 	if (this->rank[nodeA] > this->rank[nodeB])
 		this->parent[nodeB] = nodeA;
-	else // if rank[nodeA] <= rank[nodeB] 
+	else
 		this->parent[nodeA] = nodeB;
 
 	if (this->rank[nodeA] == this->rank[nodeB])

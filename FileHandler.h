@@ -28,7 +28,6 @@ class FileHandler
 	static void writeToOutputFile(const string& outputFileName, stringstream& text);
 	static void printTimeSpent(unsigned long int size, clock_t start, clock_t end);
 
-	static void printErrorMessage(string fileName);
 	static void clearOutputFileContents(string path);
 };
 

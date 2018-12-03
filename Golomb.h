@@ -17,7 +17,7 @@ using namespace std;
 class Golomb
 {
 	public:
-	// Gera os maxIndex primeiros numeros a Sequencia de Golombs
+	// Gera os n primeiros numeros a Sequencia de Golomb
 	static void golombSequence(vector<unsigned long int>& vec, unsigned long n);
 };
 

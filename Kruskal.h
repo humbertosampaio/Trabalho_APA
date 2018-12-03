@@ -7,7 +7,6 @@
 #define TRABALHO_APA_KRUSKAL_H
 
 #include <vector>
-#include <algorithm>
 #include <iostream>
 #include <time.h>
 #include <math.h>

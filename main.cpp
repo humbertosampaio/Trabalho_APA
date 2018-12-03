@@ -17,7 +17,7 @@ constexpr auto SORT_PREFIX = "sort-";
 constexpr auto MST_PREFIX = "grafo-";
 constexpr auto INSTANCES_EXTENSION = ".txt";
 constexpr auto GOLOMB_FILE_NAME = "golomb.txt";
-constexpr auto RESULT_FILE_NAME = "result.txt";
+constexpr auto RESULT_FILE_NAME = "_result.txt";
 
 using namespace std;
 
@@ -41,7 +41,7 @@ int main(int argc, char** argv)
 		cout << "- Os nomes das instacias de AGM devem estar no formato com \"" << MST_PREFIX << "[id_instancia]" << INSTANCES_EXTENSION << "\"" << endl;
 		cout << "- Por ter uma entrada mais simples, o algoritmo da Sequencia de Golomb possui apenas um arquivo de entrada,";
 		cout << " que deve possuir o nome " << GOLOMB_FILE_NAME << "\"" << endl;
-		cout << "- Os [id_instancia] devem estar entre 0 e 100" << endl;
+		cout << "- Os [id_instancia] devem estar entre 0 e 99" << endl;
 		
 		int c;
 		cout << endl << "Pressione <Enter> para fechar...";
@@ -73,8 +73,6 @@ void showRootMenu(string instancePath, bool showHeaderString)
 	{
 		switch (paradigm)
 		{
-			case 0:
-				return;
 			case 1:
 				execHeapSort(instancePath);
 				break;
@@ -87,8 +85,10 @@ void showRootMenu(string instancePath, bool showHeaderString)
 			case 4:
 				execKruskal(instancePath);
 				break;
+			case 5:
+				return;
 			default:
-				cout << "Opcao invalida. Por favor, insira um numero entre 1 e 4" << endl;
+				cout << "Opcao invalida. Por favor, insira um numero entre 1 e 5" << endl;
 				showParadigmOptions();
 				cin >> paradigm;
 				break;
@@ -112,8 +112,8 @@ void showHeader()
 void showParadigmOptions()
 {
 	cout << endl << "Escolha o paradigma: ";
-	cout << endl << "0 - Sair" << endl << "1 - Incremental" << endl << "2 - Divisao e conquista";
-	cout << endl << "3 - Programacao Dinamica" << endl << "4 - Algoritmo guloso" << endl << endl;
+	cout << endl << "1 - Incremental" << endl << "2 - Divisao e conquista";
+	cout << endl << "3 - Programacao Dinamica" << endl << "4 - Algoritmo guloso" << endl << "5 - Sair" << endl << endl;
 }
 
 void execHeapSort(string &instancePath)

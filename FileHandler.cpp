@@ -86,10 +86,6 @@ void FileHandler::printTimeSpent(unsigned long int size, clock_t start, clock_t 
 	ss << endl << "Tempo gasto na execucao: " << (double)(end - start) / CLOCKS_PER_SEC << "s" << endl << endl;
 	cout << ss.str();
 }
-void FileHandler::printErrorMessage(string fileName)
-{
-	cout << "Arquivo " << fileName << " nao encontrado." << endl;
-}
 
 void FileHandler::clearOutputFileContents(string path)
 {

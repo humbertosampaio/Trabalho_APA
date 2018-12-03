@@ -13,6 +13,8 @@ template<class T> void QuickSort::sort(vector<T> &vect, bool showTimeSpent)
 	clock_t start = clock();
 	quickSortRec(vect, 0, vect.size());
 
+	// Quando o Quick Sort é chamado pelo algoritmo de Kruskal,
+	// não é desejado que ele gere saídas
 	if (showTimeSpent)
 		FileHandler::printTimeSpent(vect.size(), start, clock());
 }
