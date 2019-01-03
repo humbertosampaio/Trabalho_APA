@@ -35,7 +35,6 @@ unsigned long int Graph::readMSTInstanceSize(string path)
 
 unsigned long int Graph::readMSTInstance(Graph& graph, string path)
 {
-	srand(time(NULL));
 	ifstream file(path);
 	unsigned long int V = 0, cont = 0;
 	int x, y, weigth;
@@ -43,9 +42,8 @@ unsigned long int Graph::readMSTInstance(Graph& graph, string path)
 	{
 		file >> V;
 		while (file >> x >> y)
-		{
 			graph.addNode(++cont, x, y);
-		}
+		
 		file.close();
 		graph.addAllEdges();
 	}

@@ -227,8 +227,8 @@ void execGolomb(string &instancePath)
 		for (int j = 1; j <= 30; j++)
 		{
 			cout << "Iteracao " << j << ":\n";
-			Golomb::golombSequence(outputVec, *it);
 			outputVec.clear();
+			Golomb::golombSequence(outputVec, *it);
 			cout << '\n';
 		}
 
